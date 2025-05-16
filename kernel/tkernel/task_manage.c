@@ -1,12 +1,12 @@
 /*
  *----------------------------------------------------------------------
- *    micro T-Kernel 3.00.06
+ *    micro T-Kernel 3.00.08.B1
  *
- *    Copyright (C) 2006-2022 by Ken Sakamura.
+ *    Copyright (C) 2006-2025 by Ken Sakamura.
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2022/10.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/05.
  *
  *----------------------------------------------------------------------
  */
@@ -37,6 +37,7 @@ SYSCALL ID tk_cre_tsk( CONST T_CTSK *pk_ctsk )
 #if USE_OBJECT_NAME
 		|TA_DSNAME
 #endif
+		|TA_TSKSYDEP
 	};
 #endif
 	TCB	*tcb;
@@ -96,6 +97,14 @@ SYSCALL ID tk_cre_tsk( CONST T_CTSK *pk_ctsk )
 	tcb->isysmode = 1;
 	tcb->sysmode  = 1;
 
+#if DEFINE_TSK_SYSDEPEND
+	tcb->tzstksz = pk_ctsk->tzstksz;
+	ercd = knl_tcb_sysdep_cre(tcb);	// TCB system dependent initialization
+	if(ercd < E_OK) {
+		goto error_exit;
+	}
+#endif
+
 	/* make it to DORMANT state */
 	knl_make_dormant(tcb);
 
@@ -119,6 +128,10 @@ SYSCALL ID tk_cre_tsk( CONST T_CTSK *pk_ctsk )
  */
 LOCAL void knl_del_tsk( TCB *tcb )
 {
+#if DEFINE_TSK_SYSDEPEND
+	knl_tcb_sysdep_del(tcb);	// TCB system dependent finalization
+#endif
+
 #if USE_IMALLOC
 	if ( (tcb->tskatr & TA_USERBUF) == 0 ) {
 		/* User buffer is not used */

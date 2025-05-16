@@ -1,12 +1,12 @@
 /*
  *----------------------------------------------------------------------
- *    micro T-Kernel 3.00.07.B0
+ *    micro T-Kernel 3.00.08.B1
  *
- *    Copyright (C) 2006-2023 by Ken Sakamura.
+ *    Copyright (C) 2006-2025 by Ken Sakamura.
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2023/11.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/05.
  *
  *----------------------------------------------------------------------
  */
@@ -172,6 +172,11 @@ typedef struct t_ctsk {
 	FP	task;		/* Task startup address */
 	PRI	itskpri;	/* Priority at task startup */
 	SZ	stksz;		/* User stack size (byte) */
+
+#ifdef CTSK_SYSDEPEND_INFO
+	CTSK_SYSDEPEND_INFO
+#endif
+
 #if USE_OBJECT_NAME
 	UB	dsname[OBJECT_NAME_LENGTH];	/* Object name */
 #endif
