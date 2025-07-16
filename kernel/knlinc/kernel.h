@@ -6,7 +6,7 @@
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2025/5.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/7.
  *
  *----------------------------------------------------------------------
  */
@@ -107,10 +107,7 @@ struct task_control_block {
 #endif
 
 /* TCB System Dependent definition */
-#if DEFINE_TSK_SYSDEPEND
 	TCB_SYSDEPEND_INFO
-#endif
-
 };
 
 /*
@@ -267,7 +264,7 @@ IMPORT ER knl_finish_device( void );
 /*
  * micro T-Kernel Startup / Finalization (sysinit.c)
  */
-#ifndef ADD_PREFIX_MAIN_FUNC
+#if !ADD_PREFIX_MAIN_FUNC
 IMPORT INT main(void);
 #else
 IMPORT INT knl_main(void);

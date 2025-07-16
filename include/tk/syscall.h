@@ -6,7 +6,7 @@
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2025/05.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/07.
  *
  *----------------------------------------------------------------------
  */
@@ -29,6 +29,7 @@
 #define TA_HLNG		0x00000001UL	/* Program by high level programming language */
 #define TA_USERBUF	0x00000020UL	/* Specify user buffer */
 #define TA_DSNAME	0x00000040UL	/* Use object name */
+#define TA_TSKSYDEP	0xFFFF0000UL	/* */
 
 #define TA_RNG0		0x00000000UL	/* Execute by protection level 0 */
 #define TA_RNG1		0x00000100UL	/* Execute by protection level 1 */

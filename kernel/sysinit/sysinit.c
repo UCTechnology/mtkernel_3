@@ -1,12 +1,12 @@
 /*
  *----------------------------------------------------------------------
- *    micro T-Kernel 3.00.08.B0
+ *    micro T-Kernel 3.00.08.B1
  *
  *    Copyright (C) 2006-2024 by Ken Sakamura.
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2024/12.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/7.
  *
  *----------------------------------------------------------------------
  */
@@ -23,7 +23,7 @@
  *    Initialize sequence before micro T-Kernel start.
  *    Perform preparation necessary to start micro T-Kernel.
  */
-#ifndef ADD_PREFIX_MAIN_FUNC
+#if !ADD_PREFIX_MAIN_FUNC
 EXPORT INT main( void )
 #else
 EXPORT INT knl_main( void )
