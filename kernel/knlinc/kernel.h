@@ -38,7 +38,6 @@ typedef struct task_control_block	TCB;
 	There is no definition for this in the standard.
 	It is redefined in the system-dependent section as necessary.
 */
-#define DEFINE_TSK_SYSDEPEND		0
 #define TCB_SYSDEPEND_INFO		/* None */
 
 #include "../tkernel/timer.h"
