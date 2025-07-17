@@ -26,12 +26,6 @@
 extern "C" {
 #endif
 
-/* System dependencies */
-#define DBGSPT_PATH_(a)		#a
-#define DBGSPT_PATH(a)		DBGSPT_PATH_(a)
-#define DBGSPT_SYSDEP()		DBGSPT_PATH(sysdepend/TARGET_DIR/dbgspt.h)
-#include DBGSPT_SYSDEP()
-
 /*
  * Object name information		td_ref_dsname, td_set_dsname
  */
