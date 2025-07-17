@@ -1,12 +1,12 @@
 /*
  *----------------------------------------------------------------------
- *    micro T-Kernel 3.00.03
+ *    micro T-Kernel 3.00.08.B1
  *
- *    Copyright (C) 2006-2021 by Ken Sakamura.
+ *    Copyright (C) 2006-2025 by Ken Sakamura.
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2021/03/31.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/07.
  *
  *----------------------------------------------------------------------
  */
@@ -260,6 +260,7 @@ IMPORT ER td_set_reg( ID tskid, CONST T_REGS *regs, CONST T_EIT *eit, CONST T_CR
 
 /* Refer system state */
 IMPORT ER td_ref_sys( TD_RSYS *rsys );
+IMPORT ER td_get_utc( SYSTIM *tim, UW *ofs );
 IMPORT ER td_get_tim( SYSTIM *tim, UW *ofs );
 IMPORT ER td_get_otm( SYSTIM *tim, UW *ofs );
 
