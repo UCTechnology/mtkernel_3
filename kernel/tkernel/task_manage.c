@@ -264,7 +264,7 @@ SYSCALL void tk_ext_tsk( void )
 
 #ifdef DORMANT_STACK_SIZE
 	/* Avoid WARNING (This code does not execute) */
-	_dummy[0] = _dummy[0];
+	_dummy[0] = _dummy[_dummy[0]];
 #endif
 }
 #endif /* USE_FUNC_TK_EXT_TSK */
