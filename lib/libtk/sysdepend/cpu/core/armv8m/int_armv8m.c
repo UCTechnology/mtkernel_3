@@ -1,12 +1,12 @@
 /*
  *----------------------------------------------------------------------
- *    micro T-Kernel 3.00.08.B0
+ *    micro T-Kernel 3.00.08.B1
  *
- *    Copyright (C) 2006-2024 by Ken Sakamura.
+ *    Copyright (C) 2006-2025 by Ken Sakamura.
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2024/12.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/08.
  *
  *----------------------------------------------------------------------
  */
@@ -106,72 +106,6 @@ EXPORT void EnableInt_nvic( UINT intno, INT level )
 	*(_UW*)(NVIC_ISER(intno)) = (0x01U << (intno % 32));
 
 	EI(imask);
-}
-
-/*----------------------------------------------------------------------*/
-/*
- * Interrupt control API
- * 
- */
-/*
- * Enable interrupt 
- */
-EXPORT void EnableInt( UINT intno, INT level )
-{
-	if( intno <= MAX_NVIC_INTNO) {
-		EnableInt_nvic( intno, level);
-	}
-}
-
-/*
- * Disable interrupt 
- */
-EXPORT void DisableInt( UINT intno )
-{
-	if( intno <= MAX_NVIC_INTNO) {
-		DisableInt_nvic( intno);
-	}
-}
-
-/*
- * Clear interrupt
- */
-EXPORT void ClearInt(UINT intno)
-{
-	if( intno <= MAX_NVIC_INTNO) {
-		ClearInt_nvic( intno);
-	}
-}
-
-/*
- * Issue EOI to interrupt controller
- */
-EXPORT void EndOfInt(UINT intno)
-{
-	/* No opetarion. */
-}
-
-/*
- * Check active state
- */
-EXPORT BOOL CheckInt( UINT intno )
-{
-	BOOL rtncd;
-
-	if( intno <= MAX_NVIC_INTNO) {
-		rtncd = CheckInt_nvic( intno);
-	} else {
-		rtncd = FALSE;
-	}
-	return rtncd;
-}
-
-/*
- * Set interrupt mode
- */
-EXPORT void SetIntMode(UINT intno, UINT mode)
-{
-	/* No operation */
 }
 
 #endif /* CPU_CORE_ARMV8M */

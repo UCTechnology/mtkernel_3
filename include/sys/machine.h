@@ -1,12 +1,12 @@
 /*
  *----------------------------------------------------------------------
- *    micro T-Kernel 3.00.07.B0
+ *    micro T-Kernel 3.00.08.B1
  *
- *    Copyright (C) 2006-2023 by Ken Sakamura.
+ *    Copyright (C) 2006-2025 by Ken Sakamura.
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2023/11.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/08.
  *
  *----------------------------------------------------------------------
  */
@@ -23,30 +23,28 @@
 
 #ifdef _IOTE_M367_
 #include "sysdepend/iote_m367/machine.h"
-
 #define Csym(sym) sym
-
 #endif
 
 #ifdef _IOTE_STM32L4_
 #include "sysdepend/iote_stm32l4/machine.h"
-
 #define Csym(sym) sym
-
 #endif
 
 #ifdef _IOTE_RX231_
 #include "sysdepend/iote_rx231/machine.h"
-
 #define Csym(sym) _##sym
-
 #endif
 
 #ifdef _IOTE_RZA2M_
 #include "sysdepend/iote_rza2m/machine.h"
-
 #define Csym(sym) sym
+#endif
 
+#ifdef _STM32_NUCLEO_N657_
+#include "sysdepend/nucleo_stm32n6/machine.h"
+#define Csym(sym) sym
+#define ADD_PREFIX_MAIN_FUNC		(1)
 #endif
 
 /* ===== C compiler dependencies definitions ============================= */

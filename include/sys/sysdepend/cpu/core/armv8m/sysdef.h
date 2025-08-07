@@ -1,12 +1,12 @@
 /*
  *----------------------------------------------------------------------
- *    micro T-Kernel 3.00.08.B0
+ *    micro T-Kernel 3.00.08.B1
  *
- *    Copyright (C) 2006-2024 by Ken Sakamura.
+ *    Copyright (C) 2006-2025 by Ken Sakamura.
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2023/12.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/08.
  *
  *----------------------------------------------------------------------
  */
@@ -51,7 +51,7 @@
 /* ------------------------------------------------------------------------ */
 
 /*
- * NVIC register - System control block
+ * System control block
  */
 #define SCB_ICSR	0xE000ED04
 #define SCB_VTOR	0xE000ED08
@@ -69,15 +69,34 @@
 #define SCB_MMFAR	0xE000ED34
 #define SCB_BFAR	0xE000ED38
 
+#define SCB_CCSIDR	0xE000ED80
+#define SCB_CSSELR	0xE000ED84
+
 #define SCB_STIR	0xE000EF00
+#define SCB_ICIALLU	0xE000EF50
+#define SCB_DCIMVAC	0xE000DF5C
+#define SCB_DCISW	0xE000EF60
+#define	SCB_DCCMVAC	0xE000EF68
+#define	SCB_DCCSW	0xE000EF6C
+#define SCB_DCCIMVAC	0xE000EF70
+#define SCB_DCCISW	0xE000EF74
 
 #define ICSR_PENDSVSET	0x10000000	/* Trigger PendSV exception. */
 #define ICSR_PENDSVCLR	0x08000000	/* Remove the pending state from the PendSV exception. */
 #define ICSR_PENDSTCLR	0x02000000	/* SysCTick Clean pending */
 
+#define	CCR_IC		(1<<17)
+#define	CCR_DC		(1<<16)
+
 #define SHCSR_USGFAULTENA	(1<<18)	/* Enable UsageFault */
 #define SHCSR_BUSFAULTENA	(1<<17)	/* Enable BusFault */
 #define SHCSR_MEMFAULTENA	(1<<16)	/* Enable MemFault */
+
+#define CCSIDR_VAL_WAYS(x)	(((x) & (0x1FF8))>>3)
+#define CCSIDR_VAL_SETS(x)	(((x) & (0xFFFE0)) >> 13)
+
+#define SCB_VAL_SET(x)	((x<<5) & 0x00003FE0)	/* SCB_DCISW, DCCSW, DCCISW SET */
+#define SCB_VAL_WAY(x)	((x<<30) & 0xC0000000)	/* SCB_DCISW, DCCSW, DCCISW WAY */
 
 #define AIRCR_VECTKEY	0x05FA0000	/* AIRCR bit.31~16  VECTKEY */
 #define AIRCR_PRIGROUP7	0x00000700	/* AIRCR bit.10~8   PRIGROUP */
@@ -147,6 +166,18 @@
 #define	FPU_CPACR_FPUENABLE	0x00F00000	/* Enable FPU (CP10,CP11) */
 #define FPU_FPCCR_ASPEN		0x80000000	/* FPCCR.ASPEN */
 #define FPU_FPCCR_LSPEN		0x40000000	/* FPCCR.LSPEN */
+
+/* ------------------------------------------------------------------------ */
+/* Clock frequency
+ */
+#ifndef _in_asm_source_
+IMPORT UW knl_sysclk;	// System clock
+
+#define	SYSCLK		knl_sysclk		// System clock
+#define TMCLK_KHz	(SYSCLK/1000)		// System timer clock input (kHz)
+#define TMCLK		(TMCLK_KHz/1000)	// System timer clock input (MHz)
+
+#endif
 
 /* ------------------------------------------------------------------------ */
 /*

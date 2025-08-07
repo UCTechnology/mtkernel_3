@@ -1,18 +1,18 @@
 /*
  *----------------------------------------------------------------------
- *    micro T-Kernel 3.00.08.B0
+ *    micro T-Kernel 3.00.08.B1
  *
- *    Copyright (C) 2006-2024 by Ken Sakamura.
+ *    Copyright (C) 2006-2025 by Ken Sakamura.
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2024/12.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/08.
  *
  *----------------------------------------------------------------------
  */
 
 #include <sys/machine.h>
-#ifdef CPU_CORE_ARMV8M
+#if defined(CPU_CORE_ARMV8M) && !defined(EXT_ARMTZ) 
 /*
  *	dispatch.S (ARMv8-M)
  *	Dispatcher
@@ -197,4 +197,4 @@ l_dispatch_200:			//  End of FPU register restore process
 
 	bx	lr
 
-#endif /* CPU_CORE_ARMV8M */
+#endif /* defined(CPU_CORE_ARMV8M) && !defined(EXT_ARMTZ) */

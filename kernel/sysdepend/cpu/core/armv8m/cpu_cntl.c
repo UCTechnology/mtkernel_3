@@ -1,12 +1,12 @@
 /*
  *----------------------------------------------------------------------
- *    micro T-Kernel 3.00.08.B0
+ *    micro T-Kernel 3.00.08.B1
  *
- *    Copyright (C) 2006-2024 by Ken Sakamura.
+ *    Copyright (C) 2006-2025 by Ken Sakamura.
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2024/12.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/08.
  *
  *----------------------------------------------------------------------
  */
@@ -193,4 +193,4 @@ EXPORT void knl_dispatch( void )
 	out_w(SCB_ICSR, ICSR_PENDSVSET);	/* pendsv exception */
 }
 
-#endif /* CPU_CORE_ARMV7M */
+#endif /* CPU_CORE_ARMV8M */

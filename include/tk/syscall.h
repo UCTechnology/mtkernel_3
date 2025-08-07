@@ -6,7 +6,7 @@
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2025/07.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/08.
  *
  *----------------------------------------------------------------------
  */
@@ -16,9 +16,12 @@
  *
  *	micro T-Kernel System Calls
  */
-
 #ifndef __TK_SYSCALL_H__
 #define __TK_SYSCALL_H__
+
+#ifdef CPU_CORE_ARMV8M
+#include "sysdepend/cpu/core/armv8m/syscall.h"
+#endif
 
 /* Task creation */
 #define TSK_SELF	0		/* Its own task specify */

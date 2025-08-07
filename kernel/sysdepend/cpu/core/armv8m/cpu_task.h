@@ -1,12 +1,12 @@
 /*
  *----------------------------------------------------------------------
- *    micro T-Kernel 3.00.08.B0
+ *    micro T-Kernel 3.00.08.B1
  *
- *    Copyright (C) 2006-2024 by Ken Sakamura.
+ *    Copyright (C) 2006-2025 by Ken Sakamura.
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2024/12.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/08.
  *
  *----------------------------------------------------------------------
  */
@@ -18,6 +18,16 @@
 
 #ifndef _SYSDEPEND_CPU_CORE_CPUTASK_
 #define _SYSDEPEND_CPU_CORE_CPUTASK_
+/*
+ * EXC_RETURN code definition (Tread mode, MSP, Basic frame)
+ */
+#if TRUSTZONE_NONSECURE
+	#define EXCRTN_CODE	0xFFFFFFB8	// Non Secure
+#else
+	#define EXCRTN_CODE	0xFFFFFFF9	// Secure (or TrustZone Disable)
+#endif /* TRUSTZONE_NONSECURE */
+
+#define	EXPRN_NO_FPU	(1<<4)		// FPU usage flag  0:use 1:no use
 
 /*
  * System stack configuration at task startup
@@ -58,8 +68,6 @@ typedef struct {
 	UW	fpscr;		/* fpscr */
 } SStackFrame_wFPU;
 
-#define	EXPRN_NO_FPU		0x00000010	/* FPU usage flag  0:use 1:no use */
-
 #endif /* USE_FPU */
 
 /*
@@ -74,7 +82,7 @@ Inline void knl_setup_context( TCB *tcb )
 	ssp--;
 
 	/* CPU context initialization */
-	ssp->exp_ret	= 0xFFFFFFF9;
+	ssp->exp_ret	= EXCRTN_CODE;
 	ssp->lr		= 0;
 	ssp->xpsr	= 0x01000000;		/* Initial SR */
 	ssp->pc = (void*)((UW)tcb->task & ~0x00000001UL);	/* Task startup address */

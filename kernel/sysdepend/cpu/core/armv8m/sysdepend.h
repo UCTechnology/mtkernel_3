@@ -1,12 +1,12 @@
 /*
  *----------------------------------------------------------------------
- *    micro T-Kernel 3.00.08.B0
+ *    micro T-Kernel 3.00.08.B1
  *
- *    Copyright (C) 2006-2024 by Ken Sakamura.
+ *    Copyright (C) 2006-2025 by Ken Sakamura.
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2024/12.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/08.
  *
  *----------------------------------------------------------------------
  */
@@ -91,5 +91,60 @@ Inline UW knl_get_primask(void)
 	return primask;
 }
 
+/*
+ *	Memory Barrier
+ */
+Inline void knl_isb(void)
+{
+	Asm("isb 0xF":::"memory");
+}
+
+Inline void knl_dsb(void)
+{
+	Asm("dsb 0xF":::"memory");
+}
+
+Inline void knl_dmb(void)
+{
+	Asm("dmb 0xF":::"memory");
+}
+
+#if USE_CACHE
+/*
+ * Cache control (cache.c)
+ */
+#define	SCB_DCACHE_LINE_SIZE	32
+#define	SCB_ICACHE_LINE_SIZE	32
+
+IMPORT void knl_enable_icache(void);
+IMPORT void knl_disable_icache(void);
+IMPORT void knl_invalidate_icache(void);
+
+IMPORT void knl_enable_dcache(void);
+IMPORT void knl_disable_dcache(void);
+IMPORT void knl_invalidate_dcache(void);
+IMPORT void knl_clean_dcache(void);
+IMPORT void knl_clean_inval_dcache(void);
+
+IMPORT void knl_invalidate_dcache_adr(volatile void *daddr, W dsize);
+IMPORT void knl_clean_dcache_adr(volatile void *daddr, W dsize);
+IMPORT void knl_clean_inval_dcache_adr(volatile void *daddr, W dsize);
+
+Inline BOOL knl_check_icache(void)
+{
+	return (in_w(SCB_CCR)&CCR_IC)?TRUE:FALSE;
+}
+
+Inline BOOL knl_check_dcache(void)
+{
+	return (in_w(SCB_CCR)&CCR_DC)?TRUE:FALSE;
+}
+#endif	/* USE_CACHE */
+
+/*
+ * Task System Dependent definition
+ */
+IMPORT ER knl_tcb_sysdep_cre(TCB *tcb, CONST T_CTSK *pk_ctsk);	// TCB system dependent initialization
+IMPORT ER knl_tcb_sysdep_del(TCB *tcb);				// TCB system dependent finalization
 
 #endif /* _SYSDEPEND_CPU_CORE_SYSDEPEND_ */

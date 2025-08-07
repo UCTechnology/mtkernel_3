@@ -1,12 +1,12 @@
 /*
  *----------------------------------------------------------------------
- *    micro T-Kernel 3.00.08.B0
+ *    micro T-Kernel 3.00.08.B1
  *
- *    Copyright (C) 2006-2024 by Ken Sakamura.
+ *    Copyright (C) 2006-2025 by Ken Sakamura.
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2024/12.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/08.
  *
  *----------------------------------------------------------------------
  */
@@ -34,8 +34,8 @@
 /* SYSCONF : micro T-Kernel system configuration
  */
 
-#define	CNF_SYSTEMAREA_TOP	0	/* 0: Use system default address */
-#define CNF_SYSTEMAREA_END	0	/* 0: Use system default address */
+#define	CNF_SYSTEMAREA_TOP	0x24100400	/* 0: Use system default address */
+#define CNF_SYSTEMAREA_END	0x2417FFFF	/* 0: Use system default address */
 
 #define	CNF_MAX_TSKPRI		32	/* Task Max priority */
 
@@ -82,7 +82,7 @@
 /* Stack size definition
  */
 #define CNF_EXC_STACK_SIZE	(2048)	/* Exception stack size */
-#define	CNF_TMP_STACK_SIZE	(256)	/* Temporary stack size */
+#define	CNF_TMP_STACK_SIZE	(1024)	/* Temporary stack size */
 
 
 /*---------------------------------------------------------------------- */
@@ -123,14 +123,14 @@
  * Static allocation of system memory
  *     Enabling this setting statically allocates system memory space as variables.
  */
-#define USE_STATIC_SYS_MEM	(0)		// 1:Valid   0:invalid
-#define SYSTEM_MEM_SIZE		(15*1024)	// Memory size to statically allocate.
+#define USE_STATIC_SYS_MEM	(0)		/* 1:Valid   0:invalid */
+#define SYSTEM_MEM_SIZE		(15*1024)	/* Memory size to statically allocate. */
 
 /* ------------------------------------------------------------------------ */
 /*
  *  System memory area information (For debugging)
  */
-#define USE_DEBUG_SYSMEMINFO   (1)		// 1:Valid   0:invalid
+#define USE_DEBUG_SYSMEMINFO   (1)		/* 1:Valid   0:invalid */
 
 /*---------------------------------------------------------------------- */
 /* Debugger support function
@@ -151,10 +151,16 @@
 #define USE_TASK_DBG_MSG	(0)	/* Tsak debug message */
 
 /*---------------------------------------------------------------------- */
+/* Use Cache.
+ *  1: Valid  0: Invalid
+ */
+#define	USE_CACHE		(1)	/*　Use Cache */
+
+/*---------------------------------------------------------------------- */
 /* Use Co-Processor.
  *  1: Valid  0: Invalid
  */
-#define	USE_FPU			(0)	/* Use FPU */
+#define	USE_FPU			(1)	/* Use FPU */
 #define	USE_DSP			(0)	/* Use DSP */
 
 #define	ALWAYS_FPU_ATR		(1)	/* Always set the TA_FPU attribute on all tasks */
@@ -163,7 +169,7 @@
 /* Use Physical timer.
  *  1: Valid  0: Invalid
  */
-#define USE_PTMR		(1)	/* Use Physical timer */
+#define USE_PTMR		(0)	/* Use Physical timer */
 
 /*---------------------------------------------------------------------- */
 /* Use Sample device driver.
@@ -180,26 +186,28 @@
 
 /*---------------------------------------------------------------------- */
 /*
- *	Don't use reset handler (for BSP)
+ *	Don't use reset handler (Use knl_start_mtkernel() )
  */
-#define DONT_USE_RESETHDR	(0)
+#define DONT_USE_RESETHDR	(1)
 
 /*---------------------------------------------------------------------- */
 /*
  *	Add a prefix to the main function (for BSP)
  */
-#define ADD_PREFIX_MAIN_FUNC	(0)
+#define ADD_PREFIX_MAIN_FUNC	(1)
 
 /* ------------------------------------------------------------------------ */
 /*
  *  Stack pointer monitoring function
  */
-#define USE_SPMON		(0)	// 1:Valid   0:invalid
+#define USE_SPMON		(1)	// 1:Valid   0:invalid
 
 /*---------------------------------------------------------------------- */
 /*
  *	Use function Definition
  */
 #include "config_func.h"
+
+#include <ext_tz/config/config_tz.h>
 
 #endif /* __TK_CONFIG__ */
