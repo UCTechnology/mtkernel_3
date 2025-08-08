@@ -38,10 +38,10 @@
 #define TARGET_DIR		nucleo_stm32n6		/* Sysdepend-Directory name */
 #define	TARGET_CPU_DIR		stm32n6			/* Sysdepend-CPU-Directory name */
 
-#define KNL_SYSDEP_PATH		ext_tz/kernel/nucleo_stm32n6	/* Kernel sysdepend path */
+#define KNL_SYSDEP_PATH		ext_sec/sysdepend/kernel/nucleo_stm32n6	/* Kernel sysdepend path */
 
 /* ----- Extension definition ----*/
-#define EXT_ARMTZ		1	/* TZ(TrustZone) Extension for Arm */
+#define EXT_SEC		1	/* Secure Extension for Arm (TrustZone) */
 
 /*
  **** CPU Core depended profile (ARMv8M)

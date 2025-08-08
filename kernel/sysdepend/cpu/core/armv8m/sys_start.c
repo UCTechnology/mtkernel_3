@@ -12,7 +12,7 @@
  */
 
 #include <sys/machine.h>
-#if defined(CPU_CORE_ARMV8M) && !defined(EXT_ARMTZ)
+#if defined(CPU_CORE_ARMV8M) && !defined(EXT_SEC)
 
 /*
  *	sys_start.c (RA FSP & ARMv8-M)
@@ -115,4 +115,4 @@ EXPORT void knl_start_mtkernel(void)
 	while(1);		// guard - infinite loops
 }
 
-#endif	/*  defined(CPU_CORE_ARMV8M) && !defined(EXT_ARMTZ) */
+#endif	/*  defined(CPU_CORE_ARMV8M) && !defined(EXT_SEC) */

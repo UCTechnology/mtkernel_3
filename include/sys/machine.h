@@ -41,7 +41,7 @@
 #define Csym(sym) sym
 #endif
 
-#ifdef _STM32_NUCLEO_N657_
+#ifdef _STM32_NUCLEO_N657_EXTSEC_
 #include "sysdepend/nucleo_stm32n6/machine.h"
 #define Csym(sym) sym
 #define ADD_PREFIX_MAIN_FUNC		(1)

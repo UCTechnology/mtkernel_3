@@ -208,6 +208,6 @@
  */
 #include "config_func.h"
 
-#include <ext_tz/config/config_tz.h>
+#include <ext_sec/config/config_tz.h>
 
 #endif /* __TK_CONFIG__ */

@@ -12,7 +12,7 @@
  */
 
 #include <sys/machine.h>
-#if defined(CPU_CORE_ARMV8M) && !defined(EXT_ARMTZ) 
+#if defined(CPU_CORE_ARMV8M) && !defined(EXT_SEC) 
 /*
  *	dispatch.S (ARMv8-M)
  *	Dispatcher
@@ -197,4 +197,4 @@ l_dispatch_200:			//  End of FPU register restore process
 
 	bx	lr
 
-#endif /* defined(CPU_CORE_ARMV8M) && !defined(EXT_ARMTZ) */
+#endif /* defined(CPU_CORE_ARMV8M) && !defined(EXT_SEC) */
