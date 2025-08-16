@@ -6,7 +6,7 @@
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2025/07.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/08.
  *
  *----------------------------------------------------------------------
  */
@@ -100,6 +100,8 @@ SYSCALL ID tk_cre_tsk( CONST T_CTSK *pk_ctsk )
 #ifdef DEFINE_TSK_SYSDEPEND
 	ercd = knl_tcb_sysdep_cre(tcb, pk_ctsk);	// TCB system dependent initialization
 	if(ercd < E_OK) {
+		QueInsert(&tcb->tskque, &knl_free_tcb);
+		tcb->state = TS_NONEXIST;		
 		goto error_exit;
 	}
 #endif

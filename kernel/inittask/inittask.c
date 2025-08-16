@@ -6,7 +6,7 @@
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2025/05.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/08.
  *
  *----------------------------------------------------------------------
  */
@@ -35,6 +35,7 @@ LOCAL void init_task_main(void);
 
 EXPORT const T_CTSK knl_init_ctsk = {
 	.exinf		= (void *)INITTASK_EXINF,
+	.tskatr		= (ATR)INITTASK_TSKATR,
 	.task		= (FP)&init_task_main,
 	.itskpri	= (PRI)INITTASK_ITSKPRI,
 	.stksz		= (SZ)INITTASK_STKSZ,

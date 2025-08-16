@@ -1,12 +1,12 @@
 /*
  *----------------------------------------------------------------------
- *    micro T-Kernel 3.00.00
+ *    micro T-Kernel 3.08.B1
  *
- *    Copyright (C) 2006-2019 by Ken Sakamura.
- *    This software is distributed under the T-License 2.1.
+ *    Copyright (C) 2006-2025 by Ken Sakamura.
+ *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2019/12/11.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/08.
  *
  *----------------------------------------------------------------------
  */
@@ -27,16 +27,24 @@
 #define INITTASK_STKSZ		(1*1024)
 #define INITTASK_DSNAME		"inittsk"
 
+#if TRUSTZONE_SCALL
 #if USE_IMALLOC
-
-#define INITTASK_TSKATR		(TA_HLNG | TA_RNG0)
-#define INITTASK_STACK		(NULL)
-
+#define INITTASK_TSKATR		(TA_HLNG | TA_RNG0 | TA_TZCALL)
 #else
-
+#define INITTASK_TSKATR		(TA_HLNG | TA_RNG0 | TA_TZCALL |TA_USERBUF)
+#endif
+#else	// TRUSTZONE_SCALL
+#if USE_IMALLOC
+#define INITTASK_TSKATR		(TA_HLNG | TA_RNG0)
+#else
 #define INITTASK_TSKATR		(TA_HLNG | TA_RNG0 | TA_USERBUF)
-#define INITTASK_STACK		init_task_stack
+#endif
+#endif	// TRUSTZONE_SCALL
 
+#if USE_IMALLOC
+#define INITTASK_STACK		(NULL)
+#else
+#define INITTASK_STACK		init_task_stack
 #endif
 
 #endif /* _INITTASK_DEF_ */
