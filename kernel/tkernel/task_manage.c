@@ -174,7 +174,7 @@ SYSCALL ER tk_del_tsk( ID tskid )
 	if ( state != TS_DORMANT ) {
 		ercd = ( state == TS_NONEXIST )? E_NOEXS: E_OBJ;
 	} else {
-		knl_del_tsk(tcb);
+		ercd = knl_del_tsk(tcb);
 	}
 	END_CRITICAL_SECTION;
 
