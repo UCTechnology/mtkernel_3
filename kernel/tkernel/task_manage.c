@@ -127,10 +127,15 @@ SYSCALL ID tk_cre_tsk( CONST T_CTSK *pk_ctsk )
  * Task deletion
  *	Call from critical section
  */
-LOCAL void knl_del_tsk( TCB *tcb )
+LOCAL ER knl_del_tsk( TCB *tcb )
 {
+	ER ercd = E_OK;
+
 #ifdef DEFINE_TSK_SYSDEPEND
-	knl_tcb_sysdep_del(tcb);	// TCB system dependent finalization
+	ercd = knl_tcb_sysdep_del(tcb);	// TCB system dependent finalization
+	if ( ercd < E_OK ) {
+		return ercd;
+	}
 #endif
 
 #if USE_IMALLOC
@@ -145,6 +150,8 @@ LOCAL void knl_del_tsk( TCB *tcb )
 	/* Return control block to FreeQue */
 	QueInsert(&tcb->tskque, &knl_free_tcb);
 	tcb->state = TS_NONEXIST;
+
+	return ercd;
 }
 
 #ifdef USE_FUNC_TK_DEL_TSK

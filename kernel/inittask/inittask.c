@@ -40,6 +40,10 @@ EXPORT const T_CTSK knl_init_ctsk = {
 	.itskpri	= (PRI)INITTASK_ITSKPRI,
 	.stksz		= (SZ)INITTASK_STKSZ,
 
+#if TRUSTZONE_SCALL
+	.tzstksz	= (SZ)INITTASK_STKSZ_SEC,
+#endif
+
 #if USE_OBJECT_NAME
 	.dsname		= INITTASK_DSNAME,
 #endif
