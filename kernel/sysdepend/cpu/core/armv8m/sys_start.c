@@ -6,7 +6,7 @@
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2025/08.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/09.
  *
  *----------------------------------------------------------------------
  */
@@ -69,7 +69,7 @@ EXPORT void knl_start_mtkernel(void)
 
 	/* Configure exception priorities */
 	reg = *(_UW*)SCB_AIRCR;
-	reg = (reg & (~AIRCR_PRIGROUP3)) | AIRCR_PRIGROUP0;	// PRIGRP:SUBPRI = 4 : 4
+	reg = (reg & (~AIRCR_PRIGROUP7)) | AIRCR_PRIGROUP3;	// PRIGRP:SUBPRI = 4 : 4
 	*(_UW*)SCB_AIRCR = (reg & 0x0000FFFF) | AIRCR_VECTKEY;
 
 	/* Enable UsageFault & BusFault & MemFault */

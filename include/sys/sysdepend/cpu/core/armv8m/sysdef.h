@@ -6,7 +6,7 @@
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2025/08.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/09.
  *
  *----------------------------------------------------------------------
  */
@@ -121,7 +121,7 @@
  *   SHRP2    SVCall    (Rev)     (Rev)     (Rev)
  *   SHPR3    SysTick   PendSV    (Rsv)     DebugMon-
  */
-#define	SCB_SHPR2_VAL	((INTPRI_VAL(INTPRI_SVC)<<23))
+#define	SCB_SHPR2_VAL	((INTPRI_VAL(INTPRI_SVC)<<24))
 #define SCB_SHPR3_VAL	((INTPRI_VAL(INTPRI_SYSTICK)<<24)|(INTPRI_VAL(INTPRI_PENDSV)<<16))
 
 /*
