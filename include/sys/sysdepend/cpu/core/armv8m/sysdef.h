@@ -6,7 +6,7 @@
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2025/09.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/11.
  *
  *----------------------------------------------------------------------
  */
@@ -93,7 +93,7 @@
 #define SHCSR_MEMFAULTENA	(1<<16)	/* Enable MemFault */
 
 #define CCSIDR_VAL_WAYS(x)	(((x) & (0x1FF8))>>3)
-#define CCSIDR_VAL_SETS(x)	(((x) & (0xFFFE0)) >> 13)
+#define CCSIDR_VAL_SETS(x)	(((x) & (0x0FFFE000)) >> 13)
 
 #define SCB_VAL_SET(x)	((x<<5) & 0x00003FE0)	/* SCB_DCISW, DCCSW, DCCISW SET */
 #define SCB_VAL_WAY(x)	((x<<30) & 0xC0000000)	/* SCB_DCISW, DCCSW, DCCISW WAY */
