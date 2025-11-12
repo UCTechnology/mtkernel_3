@@ -6,7 +6,7 @@
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2025/08
+ *    Released by TRON Forum(http://www.tron.org) at 2025/11
  *
  *----------------------------------------------------------------------
  */
@@ -40,7 +40,7 @@ EXPORT void knl_hll_inthdr(void)
 	intno	= knl_get_ipsr() - 16;
 	inthdr	= (FP)hllint_tbl[intno];
 
-	(*inthdr)(intno);
+	(*(void(*)(UW))inthdr)(intno);
 
 	LEAVE_TASK_INDEPENDENT;
 }

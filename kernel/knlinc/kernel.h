@@ -6,7 +6,7 @@
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2025/7.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/11.
  *
  *----------------------------------------------------------------------
  */
@@ -51,9 +51,9 @@ typedef struct task_control_block	TCB;
 #define SYSCALL		EXPORT		/* Definition of system call */
 
 /* User defined handler ( Sub-system calls, time-event handler ) */
-# define CallUserHandlerP1(   p1,         hdr, cb)	(*(hdr))(p1)
-# define CallUserHandlerP2(   p1, p2,     hdr, cb)	(*(hdr))(p1, p2)
-# define CallUserHandlerP3(   p1, p2, p3, hdr, cb)	(*(hdr))(p1, p2, p3)
+# define CallUserHandlerP1(   p1,         hdr, cb)	(*(void(*)(UW))(hdr))((UW)(p1))
+# define CallUserHandlerP2(   p1, p2,     hdr, cb)	(*(void(*)(UW,UW))(hdr))((UW)(p1), (UW)(p2))
+# define CallUserHandlerP3(   p1, p2, p3, hdr, cb)	(*(void(*)(UW,UW,UW))(hdr))((UW)(p1), (UW)(p2), (UW)(p3))
 
 /*
  * Task control block (TCB)
