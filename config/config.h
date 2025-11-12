@@ -6,7 +6,7 @@
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2025/08.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/11.
  *
  *----------------------------------------------------------------------
  */
@@ -204,10 +204,17 @@
 
 /*---------------------------------------------------------------------- */
 /*
- *	Use function Definition
+ *	Extensions definition
+ */
+#if EXT_SEC
+#include <config/config_sec.h>
+#endif
+
+/*---------------------------------------------------------------------- */
+/*
+ *	Defining the functions to use
  */
 #include "config_func.h"
 
-#include <ext_sec/config/config_sec.h>
 
 #endif /* __TK_CONFIG__ */
