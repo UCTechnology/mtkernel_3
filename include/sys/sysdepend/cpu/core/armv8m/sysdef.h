@@ -168,18 +168,6 @@
 #define FPU_FPCCR_LSPEN		0x40000000	/* FPCCR.LSPEN */
 
 /* ------------------------------------------------------------------------ */
-/* Clock frequency
- */
-#ifndef _in_asm_source_
-IMPORT UW knl_sysclk;	// System clock
-
-#define	SYSCLK		knl_sysclk		// System clock
-#define TMCLK_KHz	(SYSCLK/1000)		// System timer clock input (kHz)
-#define TMCLK		(TMCLK_KHz/1000)	// System timer clock input (MHz)
-
-#endif
-
-/* ------------------------------------------------------------------------ */
 /*
  * Definition of minimum system stack size
  *	Minimum system stack size when setting the system stack size
