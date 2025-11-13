@@ -6,7 +6,7 @@
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2025/08.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/11.
  *
  *----------------------------------------------------------------------
  */
@@ -48,6 +48,12 @@
 #endif
 
 #define INTERNAL_RAM_END        (INTERNAL_RAM_START+INTERNAL_RAM_SIZE)
+
+/* ------------------------------------------------------------------------ */
+/*
+ * Initial Stack pointer (Used in initialization process)
+ */
+#define	INITIAL_SP		INTERNAL_RAM_END
 
 /* ------------------------------------------------------------------------ */
 /*

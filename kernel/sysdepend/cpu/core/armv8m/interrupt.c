@@ -101,12 +101,6 @@ EXPORT void knl_return_inthdr(void)
 	return;
 }
 
-void knl_default_handler(void)
-{
-	tm_printf((UB*)"Default Handler\n");
-	while(1);
-}
-
 /* ------------------------------------------------------------------------ */
 /*
  * Interrupt initialize

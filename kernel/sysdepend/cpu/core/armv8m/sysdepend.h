@@ -6,7 +6,7 @@
  *    This software is distributed under the T-License 2.2.
  *----------------------------------------------------------------------
  *
- *    Released by TRON Forum(http://www.tron.org) at 2025/08.
+ *    Released by TRON Forum(http://www.tron.org) at 2025/11.
  *
  *----------------------------------------------------------------------
  */
@@ -48,6 +48,8 @@ IMPORT void knl_busfault_handler(void);		/* 5: Bus Fault Handler */
 IMPORT void knl_usagefault_handler(void);	/* 6: Usage Fault Handler */
 IMPORT void knl_svcall_handler(void);		/* 11: Svcall */
 IMPORT void knl_debugmon_handler(void);		/* 12: Debug Monitor Handler */
+
+IMPORT void knl_default_handler(void);		/* Default Handler */
 
 /*
  *	Kernel start routine (sys_start.c)
