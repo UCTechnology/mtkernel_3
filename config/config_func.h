@@ -9,6 +9,10 @@
  *    Released by TRON Forum(http://www.tron.org) at 2020/05/29.
  *
  *----------------------------------------------------------------------
+ *
+ *    Modified by UC Technology(https://www.uctec.com) at 2025/09.
+ *
+ *----------------------------------------------------------------------
  */
 
 /*
@@ -124,6 +128,7 @@
 #define USE_FUNC_TK_SET_TIM
 #define USE_FUNC_TK_GET_TIM
 #define USE_FUNC_TK_GET_OTM
+#define USE_FUNC_TD_GET_UTC
 #define USE_FUNC_TD_GET_TIM
 #define USE_FUNC_TD_GET_OTM
 
